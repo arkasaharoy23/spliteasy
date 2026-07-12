@@ -1,0 +1,83 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <!-- Background Gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Coin Gradient -->
+    <linearGradient id="coin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#DDEAFE"/>
+    </linearGradient>
+
+    <!-- Glow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12"
+        flood-color="#000000" flood-opacity=".18"/>
+    </filter>
+
+  </defs>
+
+  <!-- Rounded Square -->
+  <rect
+      x="26"
+      y="26"
+      width="460"
+      height="460"
+      rx="110"
+      fill="url(#bg)"/>
+
+  <!-- Soft Circle -->
+  <circle
+      cx="256"
+      cy="256"
+      r="145"
+      fill="url(#coin)"
+      filter="url(#shadow)"/>
+
+  <!-- Split -->
+  <line
+      x1="256"
+      y1="135"
+      x2="256"
+      y2="377"
+      stroke="#4F46E5"
+      stroke-width="10"
+      stroke-linecap="round"/>
+
+  <!-- Left Half -->
+  <path
+      d="M256 111
+         A145 145 0 0 0 256 401
+         Z"
+      fill="#FFFFFF"
+      opacity=".92"/>
+
+  <!-- Right Half -->
+  <path
+      d="M256 111
+         A145 145 0 0 1 256 401
+         Z"
+      fill="#BFDBFE"
+      opacity=".95"/>
+
+  <!-- Rupee -->
+  <text
+      x="256"
+      y="285"
+      text-anchor="middle"
+      font-size="110"
+      font-family="Segoe UI, Arial"
+      font-weight="700"
+      fill="#1E3A8A">₹</text>
+
+  <!-- Decorative Dots -->
+  <circle cx="175" cy="170" r="8" fill="#60A5FA"/>
+  <circle cx="337" cy="340" r="10" fill="#3B82F6"/>
+  <circle cx="155" cy="330" r="6" fill="#93C5FD"/>
+
+</svg>

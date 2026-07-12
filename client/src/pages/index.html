@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SplitEasy — Split bills. Not friendships.</title>
+  <meta name="description" content="SplitEasy helps friends, cousins and colleagues track shared expenses, split bills fairly and settle up instantly over UPI." />
+  <link rel="icon" href="../../public/assets/images/favicon.ico" sizes="any" />
+  <link rel="icon" href="../../public/assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
+  <link rel="stylesheet" href="../css/components/header.css" />
+  <link rel="stylesheet" href="../css/components/footer.css" />
+  <link rel="stylesheet" href="../css/components/cards.css" />
+  <link rel="stylesheet" href="../css/pages/index.css" />
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand">
+        <img src="../../public/assets/images/logo.svg" alt="SplitEasy logo" class="brand-logo" />
+        <span class="brand-name">SplitEasy</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="login.html">Sign in</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-secondary">Sign in</a>
+        <a href="signup.html" class="btn btn-primary">Get started</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Built for friends, cousins &amp; colleagues</span>
+          <h1 class="hero-title">Split the bill.<br />Not the <span class="accent">friendship.</span></h1>
+          <p class="hero-subtitle">
+            SplitEasy tracks every shared trip, dinner and rent split in one place, works out who owes what down to the rupee, and lets everyone settle up over UPI without the group-chat math.
+          </p>
+          <div class="hero-cta-row">
+            <a href="signup.html" class="btn btn-primary">Create your first group</a>
+            <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
+          </div>
+          <p class="hero-note">Free to use · No card required · Google or email sign-in</p>
+        </div>
+
+        <div class="hero-visual" id="heroVisual">
+          <svg viewBox="0 0 480 420" width="100%" height="100%" role="img" aria-label="A bill splitting between three people">
+            <g class="receipt-card">
+              <rect x="150" y="24" width="180" height="230" rx="12" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="2" />
+              <rect x="172" y="52" width="100" height="8" rx="4" fill="#CBD5E1" />
+              <rect x="172" y="72" width="136" height="8" rx="4" fill="#E2E8F0" />
+              <rect x="172" y="92" width="120" height="8" rx="4" fill="#E2E8F0" />
+              <rect x="172" y="112" width="136" height="8" rx="4" fill="#E2E8F0" />
+              <rect x="172" y="132" width="90" height="8" rx="4" fill="#E2E8F0" />
+              <line x1="172" y1="164" x2="308" y2="164" stroke="var(--color-border)" stroke-width="2" stroke-dasharray="4 6" />
+              <text x="172" y="196" font-family="var(--font-mono)" font-size="14" fill="var(--color-text-secondary)">TOTAL</text>
+              <text x="308" y="196" font-family="var(--font-mono)" font-weight="700" font-size="18" fill="var(--color-text)" text-anchor="end">₹1,350</text>
+              <rect x="172" y="214" width="70" height="24" rx="12" fill="rgba(37,99,235,0.1)" />
+              <text x="207" y="230" font-family="var(--font-mono)" font-size="11" fill="var(--color-primary)" text-anchor="middle">SPLIT ×3</text>
+            </g>
+
+            <g class="split-lines" fill="none" stroke="var(--color-secondary)" stroke-width="2.5">
+              <path d="M 210 254 C 200 300, 140 300, 96 336" />
+              <path d="M 240 254 C 240 300, 240 300, 240 340" />
+              <path d="M 270 254 C 280 300, 340 300, 384 336" />
+            </g>
+
+            <circle class="split-dot" cx="240" cy="256" r="6" fill="var(--color-accent)" />
+
+            <g class="split-avatar">
+              <circle cx="96" cy="360" r="30" fill="var(--color-primary)" />
+              <text x="96" y="367" font-family="var(--font-display)" font-weight="700" font-size="18" fill="var(--color-surface)" text-anchor="middle">A</text>
+              <text x="96" y="404" font-family="var(--font-mono)" font-size="13" fill="var(--color-text)" text-anchor="middle">₹450</text>
+            </g>
+
+            <g class="split-avatar">
+              <circle cx="240" cy="364" r="30" fill="var(--color-success)" />
+              <text x="240" y="371" font-family="var(--font-display)" font-weight="700" font-size="18" fill="var(--color-surface)" text-anchor="middle">R</text>
+              <text x="240" y="408" font-family="var(--font-mono)" font-size="13" fill="var(--color-text)" text-anchor="middle">₹450</text>
+            </g>
+
+            <g class="split-avatar">
+              <circle cx="384" cy="360" r="30" fill="var(--color-secondary)" />
+              <text x="384" y="367" font-family="var(--font-display)" font-weight="700" font-size="18" fill="var(--color-surface)" text-anchor="middle">K</text>
+              <text x="384" y="404" font-family="var(--font-mono)" font-size="13" fill="var(--color-text)" text-anchor="middle">₹450</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section steps" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">How it works</span>
+          <h2>Three steps between a receipt and a settled group</h2>
+          <p>No spreadsheets, no chasing people in group chats. Create a group once, then let SplitEasy do the arithmetic every time someone pays for something.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card card-reveal" data-reveal>
+            <span class="step-index">Step 01</span>
+            <h3>Create a group</h3>
+            <p>Start a group for your trip, flat or team, then invite people with a link or a scannable QR code. Only invited members can join.</p>
+          </div>
+          <div class="step-card card-reveal" data-reveal>
+            <span class="step-index">Step 02</span>
+            <h3>Add an expense</h3>
+            <p>Log what was paid and by whom. Split it equally or by custom shares — the admin decides who else is allowed to add expenses.</p>
+          </div>
+          <div class="step-card card-reveal" data-reveal>
+            <span class="step-index">Step 03</span>
+            <h3>Settle up</h3>
+            <p>See exactly who owes what on the analytics page, then pay or get paid directly over UPI. No more mental math after the bill arrives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Why SplitEasy</span>
+          <h2>Everything a group needs, nothing it doesn't</h2>
+          <p>Built around how groups actually share expenses — one admin, clear permissions, and numbers everyone can trust.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="10" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+            </div>
+            <h3>Admin-controlled groups</h3>
+            <p>Group admins manage members, set who can add expenses, and can remove or dissolve the group at any time.</p>
+          </div>
+
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM19 19h2v2h-2z" /></svg>
+            </div>
+            <h3>Invite by link or QR</h3>
+            <p>New members join only through a private invite link or a QR code the admin shares — never an open, searchable group.</p>
+          </div>
+
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18" /><path d="M18 17V9M13 17V5M8 17v-4" /></svg>
+            </div>
+            <h3>Clear analytics</h3>
+            <p>A dedicated dashboard shows exactly how much you owe and how much others owe you, updated the moment an expense is added.</p>
+          </div>
+
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2h9l3 3v17H6z" /><path d="M9 8h6M9 12h6M9 16h4" /></svg>
+            </div>
+            <h3>Fair, flexible splits</h3>
+            <p>Split evenly or set custom shares per person — SplitEasy handles the calculation and keeps a running record for the group.</p>
+          </div>
+
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            </div>
+            <h3>Real-time notifications</h3>
+            <p>Get notified the moment you're added to a group, an expense is logged, or someone settles a payment with you.</p>
+          </div>
+
+          <div class="feature-card card-reveal" data-reveal>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M7 15h4" /></svg>
+            </div>
+            <h3>Built for UPI</h3>
+            <p>Save your UPI ID on your profile so settling a balance with a groupmate is one tap away, no separate app needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Stop splitting bills in your head.</h2>
+            <p>Create a free account and set up your first group in under two minutes.</p>
+          </div>
+          <a href="signup.html" class="btn btn-secondary">Get started free</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="../../public/assets/images/logo.svg" alt="SplitEasy logo" class="brand-logo" />
+            <span class="brand-name">SplitEasy</span>
+          </a>
+          <p>A simple way for friends, cousins and colleagues to track shared expenses and settle up without the awkward math.</p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Product</p>
+          <ul class="footer-links">
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="signup.html">Create an account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul class="footer-links">
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Legal</p>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html">Privacy policy</a></li>
+            <li><a href="licenses.html">Licenses</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> SplitEasy. All rights reserved.</span>
+        <span>Made as a final-year project.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/pages/index.js"></script>
+</body>
+</html>

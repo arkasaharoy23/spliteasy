@@ -1,0 +1,216 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-8) var(--space-7);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 37px,
+    var(--color-border) 38px
+  );
+  background-size: 100% 38px;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.hero-copy .eyebrow {
+  margin-bottom: var(--space-4);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.hero-title .accent {
+  color: var(--color-primary);
+}
+
+.hero-subtitle {
+  margin-top: var(--space-4);
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  max-width: 46ch;
+}
+
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.hero-note {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.split-lines path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 600ms ease;
+}
+
+.split-avatar {
+  opacity: 0;
+  transform: scale(0.7);
+  transform-origin: center;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+.split-dot {
+  transform-origin: center;
+}
+
+.hero-visual.is-loaded .receipt-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-visual.is-loaded .split-lines path {
+  stroke-dashoffset: 0;
+  transition-delay: 400ms;
+}
+
+.hero-visual.is-loaded .split-avatar {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-visual.is-loaded .split-avatar:nth-of-type(1) {
+  transition-delay: 900ms;
+}
+
+.hero-visual.is-loaded .split-avatar:nth-of-type(2) {
+  transition-delay: 1050ms;
+}
+
+.hero-visual.is-loaded .split-avatar:nth-of-type(3) {
+  transition-delay: 1200ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .split-dot {
+    animation: pulseDot 2.6s ease-in-out infinite;
+    animation-delay: 1400ms;
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.75; }
+}
+
+.steps {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-heading {
+  max-width: 60ch;
+  margin-bottom: var(--space-6);
+}
+
+.section-heading h2 {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  margin-top: var(--space-2);
+}
+
+.section-heading p {
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.features {
+  background: var(--color-bg);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.cta-band {
+  background: linear-gradient(120deg, var(--color-primary), var(--color-primary-hover));
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  color: var(--color-surface);
+}
+
+.cta-band h2 {
+  color: var(--color-surface);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.cta-band p {
+  margin-top: var(--space-2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-band .btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: none;
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .steps-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .steps-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-band {
+    flex-direction: column;
+    text-align: center;
+  }
+}

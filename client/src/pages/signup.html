@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create your account — SplitEasy</title>
+  <link rel="icon" href="../../public/assets/images/favicon.ico" sizes="any" />
+  <link rel="icon" href="../../public/assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
+  <link rel="stylesheet" href="../css/pages/auth.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <aside class="auth-brand-panel">
+      <a href="index.html" class="brand">
+        <img src="../../public/assets/images/logo.svg" alt="SplitEasy logo" class="brand-logo" />
+        <span class="brand-name">SplitEasy</span>
+      </a>
+
+      <div class="auth-brand-copy">
+        <span class="eyebrow" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #FFFFFF;">Join a group</span>
+        <h2>Track it once, split it fairly, settle it over UPI.</h2>
+        <p>Create your profile and you're ready to join or start a group with friends, cousins or colleagues in minutes.</p>
+      </div>
+
+      <p class="auth-brand-footer">© <span id="brandYear"></span> SplitEasy</p>
+    </aside>
+
+    <main class="auth-form-panel">
+      <div class="auth-card">
+        <div class="auth-card-heading">
+          <h1>Create your account</h1>
+          <p>Already have one? <a href="login.html">Sign in instead</a></p>
+        </div>
+
+        <div id="signupBanner" class="form-banner"></div>
+
+        <form id="signupForm" novalidate>
+          <div class="photo-upload-row">
+            <div class="photo-preview" id="photoPreview">＋</div>
+            <div class="photo-upload-actions">
+              <label for="profilePhotoInput" class="btn btn-secondary btn-sm">Add profile photo</label>
+              <input type="file" id="profilePhotoInput" accept="image/jpeg,image/png,image/webp" />
+              <span class="form-hint">Optional · JPG, PNG or WEBP, under 5MB</span>
+              <span class="form-error" id="photoError"></span>
+            </div>
+          </div>
+
+          <div class="form-field" id="fullNameField">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" placeholder="Aisha Sharma" autocomplete="name" />
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-field" id="usernameField">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="aisha_s" autocomplete="username" />
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-field" id="emailField">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-field" id="passwordField">
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input type="password" id="password" placeholder="At least 6 characters" autocomplete="new-password" />
+              <button type="button" class="password-toggle">Show</button>
+            </div>
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-field" id="confirmPasswordField">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="password-field">
+              <input type="password" id="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" />
+              <button type="button" class="password-toggle">Show</button>
+            </div>
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-field" id="upiField">
+            <label for="upiId">UPI ID <span class="form-hint" style="display:inline">(optional, add later in profile)</span></label>
+            <input type="text" id="upiId" placeholder="yourname@okaxis" />
+            <span class="form-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="signupSubmit">Create account</button>
+        </form>
+
+        <div class="auth-divider">or</div>
+
+        <button type="button" class="btn btn-google btn-block" id="googleSignup">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.98v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.98A9 9 0 0 0 0 9c0 1.45.35 2.83.98 4.03l2.97-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .98 4.97L3.95 7.3C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+          Continue with Google
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/pages/auth.js"></script>
+  <script>
+    document.getElementById("brandYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
