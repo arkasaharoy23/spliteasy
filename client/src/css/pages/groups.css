@@ -1,0 +1,245 @@
+.create-group-panel {
+  display: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  max-width: 480px;
+}
+
+.create-group-panel.is-open {
+  display: block;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.group-card {
+  display: block;
+  padding: var(--space-4);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.group-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.group-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.group-card-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+}
+
+.group-card-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.group-card-meta {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+.group-card-balance {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.balance-positive {
+  color: var(--color-success);
+}
+
+.balance-negative {
+  color: var(--color-danger);
+}
+
+.balance-mixed {
+  color: var(--color-accent);
+}
+
+.balance-neutral {
+  color: var(--color-text-secondary);
+}
+
+.group-menu {
+  position: relative;
+}
+
+.group-menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 30;
+}
+
+.group-menu-dropdown.is-open {
+  display: block;
+}
+
+.group-menu-dropdown button {
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  background: none;
+  border: none;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+.group-menu-dropdown button:hover {
+  background: var(--color-bg);
+}
+
+.menu-item-danger {
+  color: var(--color-danger) !important;
+}
+
+.group-description {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: var(--space-4);
+}
+
+.member-simple-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-simple-list .member-row-name {
+  font-weight: 600;
+}
+
+.member-role-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+
+.expense-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.expense-item:last-child {
+  border-bottom: none;
+}
+
+.expense-item-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.expense-item-meta {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.expense-item-side {
+  text-align: right;
+}
+
+.expense-item-amount {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.expense-item-share {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.expense-item-time {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.expense-item-receipt {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.settle-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.settle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.settle-item:last-child {
+  border-bottom: none;
+}
+
+.settle-item-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.settle-item-amount {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.settle-item-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.settle-item-status {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}

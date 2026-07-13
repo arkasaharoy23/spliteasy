@@ -1,0 +1,17 @@
+<div class="modal-overlay" id="inviteModalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Invite to group</h2>
+      <button type="button" class="modal-close" data-close-modal="inviteModalOverlay">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-subtext">Share this link or QR code. Anyone who opens it can join the group.</p>
+      <div class="modal-invite-link-row">
+        <input type="text" id="inviteLinkInput" readonly />
+        <button type="button" class="btn btn-secondary btn-sm" id="copyInviteLinkBtn">Copy</button>
+      </div>
+      <div class="modal-qr-wrapper" id="inviteQrContainer"></div>
+      <button type="button" class="btn btn-secondary btn-block" id="regenerateInviteBtn">Generate new link</button>
+    </div>
+  </div>
+</div>

@@ -98,6 +98,104 @@ input:focus-visible,
   border-radius: var(--radius-sm);
 }
 
+.form-field {
+  margin-bottom: var(--space-4);
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
+}
+
+.form-field input.is-invalid {
+  border-color: var(--color-danger);
+}
+
+.form-hint {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.form-error {
+  margin-top: var(--space-2);
+  font-size: 0.82rem;
+  color: var(--color-danger);
+  display: none;
+}
+
+.form-error.is-visible {
+  display: block;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: var(--space-1);
+}
+
+.password-toggle:hover {
+  color: var(--color-primary);
+}
+
+.form-banner {
+  margin-bottom: var(--space-4);
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  display: none;
+}
+
+.form-banner.is-visible {
+  display: block;
+}
+
+.form-banner-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.form-banner-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

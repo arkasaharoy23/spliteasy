@@ -16,6 +16,15 @@ import {
 } from "../utils/validators.js";
 import { ROUTES } from "../utils/constants.js";
 
+function redirectAfterAuth() {
+  const pendingJoinCode = sessionStorage.getItem("pendingJoinCode");
+  if (pendingJoinCode) {
+    window.location.href = `groups.html?join=${pendingJoinCode}`;
+    return;
+  }
+  window.location.href = ROUTES.DASHBOARD;
+}
+
 function showBanner(banner, message, type) {
   banner.textContent = message;
   banner.classList.remove("form-banner-error", "form-banner-success");
@@ -179,7 +188,7 @@ function initSignupForm() {
       });
 
       showBanner(banner, "Account created. Redirecting to your dashboard...", "success");
-      window.location.href = ROUTES.DASHBOARD;
+      redirectAfterAuth();
     } catch (error) {
       const message = error.code ? mapFirebaseError(error) : error.message;
       showBanner(banner, message, "error");
@@ -206,7 +215,7 @@ function initSignupForm() {
         authProvider: "google"
       });
 
-      window.location.href = ROUTES.DASHBOARD;
+      redirectAfterAuth();
     } catch (error) {
       const message = error.code ? mapFirebaseError(error) : error.message;
       showBanner(banner, message, "error");
@@ -258,7 +267,7 @@ function initLoginForm() {
       const credential = await signInWithEmail(email, password);
       const idToken = await credential.user.getIdToken();
       await syncLogin(idToken);
-      window.location.href = ROUTES.DASHBOARD;
+      redirectAfterAuth();
     } catch (error) {
       const message = error.code ? mapFirebaseError(error) : error.message;
       showBanner(banner, message, "error");
@@ -285,7 +294,7 @@ function initLoginForm() {
         authProvider: "google"
       });
 
-      window.location.href = ROUTES.DASHBOARD;
+      redirectAfterAuth();
     } catch (error) {
       const message = error.code ? mapFirebaseError(error) : error.message;
       showBanner(banner, message, "error");

@@ -6,6 +6,8 @@
   display: grid;
   grid-template-columns: 260px 1fr;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -173,7 +175,7 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-4);
   margin-bottom: var(--space-5);
 }
@@ -317,10 +319,6 @@
 }
 
 @media (max-width: 1080px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .dashboard-columns {
     grid-template-columns: 1fr;
   }
@@ -356,11 +354,5 @@
 
   .topbar-user-meta {
     display: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
   }
 }

@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const corsOptions = require("./config/cors");
 const authRoutes = require("./routes/authRoutes");
+const groupRoutes = require("./routes/groupRoutes");
+const expenseRoutes = require("./routes/expenseRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -33,6 +35,8 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/groups", groupRoutes);
+app.use("/api/groups", expenseRoutes);
 
 app.use(errorHandler);
 
