@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Invite = require("../models/Invite");
 const { createInvite, getActiveInvite } = require("../services/inviteService");
 const { computeGroupBalances, balancesForUser } = require("../services/analyticsService");
+const { notify, notifyMany } = require("../services/notificationService");
 
 async function getCurrentAppUser(req) {
   return User.findOne({ firebaseUid: req.firebaseUser.uid });
@@ -237,6 +238,14 @@ async function joinGroupByInviteCode(req, res) {
 
     group.members.push({ user: currentUser._id, role: "member", canAddExpense: false });
     await group.save();
+
+    const adminIds = group.members.filter((m) => m.role === "admin").map((m) => m.user);
+    await notifyMany(
+      adminIds,
+      "member_joined",
+      `${currentUser.username} joined "${group.name}"`,
+      group._id
+    );
 
     res.status(200).json({ message: "Joined group successfully", group });
   } catch (error) {

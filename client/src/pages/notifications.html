@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications — SplitEasy</title>
+  <link rel="icon" href="../../public/assets/images/favicon.ico" sizes="any" />
+  <link rel="icon" href="../../public/assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
+  <link rel="stylesheet" href="../css/components/cards.css" />
+  <link rel="stylesheet" href="../css/pages/dashboard.css" />
+</head>
+<body class="dashboard-body">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="brand sidebar-brand">
+        <img src="../../public/assets/images/logo.svg" alt="SplitEasy logo" class="brand-logo" />
+        <span class="brand-name">SplitEasy</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">
+          <svg class="sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5" /><rect x="14" y="3" width="7" height="5" rx="1.5" /><rect x="14" y="12" width="7" height="9" rx="1.5" /><rect x="3" y="16" width="7" height="5" rx="1.5" /></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="groups.html" class="sidebar-link">
+          <svg class="sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="10" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+          <span>Groups</span>
+        </a>
+        <a href="analytics.html" class="sidebar-link">
+          <svg class="sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18" /><path d="M18 17V9M13 17V5M8 17v-4" /></svg>
+          <span>Analytics</span>
+        </a>
+        <a href="notifications.html" class="sidebar-link is-active">
+          <svg class="sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+          <span>Notifications</span>
+        </a>
+        <a href="settings.html" class="sidebar-link">
+          <svg class="sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <button type="button" class="btn btn-secondary btn-block sidebar-logout" id="logoutBtn">Sign out</button>
+    </aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="topbar-greeting">
+          <p class="topbar-eyebrow">Stay in the loop</p>
+          <h1>Notifications</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="btn btn-secondary" id="markAllReadBtn">Mark all as read</button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <section class="dashboard-panel">
+          <ul class="notification-list" id="notificationList"></ul>
+          <p class="empty-state" id="notificationsEmptyState">You're all caught up.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module">
+    import { watchAuthState, signOutUser } from "../js/services/auth-service.js";
+    import { fetchNotifications, markNotificationRead, markAllNotificationsRead } from "../js/services/notification-service.js";
+    import { renderNotificationItem } from "../js/components/notification-item.js";
+    import { ROUTES } from "../js/utils/constants.js";
+
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const markAllReadBtn = document.getElementById("markAllReadBtn");
+    const notificationList = document.getElementById("notificationList");
+    const notificationsEmptyState = document.getElementById("notificationsEmptyState");
+
+    let currentIdToken = null;
+
+    async function loadNotifications() {
+      try {
+        const { notifications } = await fetchNotifications(currentIdToken);
+        notificationList.innerHTML = "";
+
+        if (notifications.length === 0) {
+          notificationsEmptyState.classList.add("is-visible");
+          return;
+        }
+
+        notificationsEmptyState.classList.remove("is-visible");
+        notifications.forEach((notification) => {
+          notificationList.appendChild(
+            renderNotificationItem(notification, async (id) => {
+              await markNotificationRead(currentIdToken, id);
+              await loadNotifications();
+            })
+          );
+        });
+      } catch (error) {
+        console.error("Could not load notifications:", error);
+        notificationsEmptyState.textContent = "Couldn't load notifications. Check that the backend server is running.";
+        notificationsEmptyState.classList.add("is-visible");
+      }
+    }
+
+    markAllReadBtn.addEventListener("click", async () => {
+      await markAllNotificationsRead(currentIdToken);
+      await loadNotifications();
+    });
+
+    sidebarToggle.addEventListener("click", () => {
+      document.body.classList.toggle("sidebar-open");
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await signOutUser();
+      window.location.href = ROUTES.LOGIN;
+    });
+
+    watchAuthState(async (firebaseUser) => {
+      if (!firebaseUser) {
+        window.location.href = ROUTES.LOGIN;
+        return;
+      }
+
+      currentIdToken = await firebaseUser.getIdToken();
+      await loadNotifications();
+    });
+  </script>
+</body>
+</html>

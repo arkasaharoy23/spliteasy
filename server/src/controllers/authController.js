@@ -88,6 +88,48 @@ async function registerProfile(req, res) {
   }
 }
 
+async function updateProfile(req, res) {
+  const { uid } = req.firebaseUser;
+  const { username, fullName, upiId, profilePhotoUrl, profilePhotoPublicId } = req.body;
+
+  if (username && !isValidUsername(username)) {
+    return res.status(400).json({ message: "Username must be 3-20 characters (letters, numbers, underscore)" });
+  }
+
+  if (upiId && !isValidUpiId(upiId)) {
+    return res.status(400).json({ message: "Enter a valid UPI ID, like name@bank" });
+  }
+
+  try {
+    if (username) {
+      const usernameTaken = await User.findOne({ username, firebaseUid: { $ne: uid } });
+      if (usernameTaken) {
+        return res.status(409).json({ message: "Username is already taken" });
+      }
+    }
+
+    const updates = {};
+    if (username) updates.username = username;
+    if (fullName !== undefined) updates.fullName = fullName;
+    if (upiId !== undefined) updates.upiId = upiId;
+    if (profilePhotoUrl) updates.profilePhotoUrl = profilePhotoUrl;
+    if (profilePhotoPublicId) updates.profilePhotoPublicId = profilePhotoPublicId;
+
+    const user = await User.findOneAndUpdate({ firebaseUid: uid }, updates, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({ message: "Username is already taken" });
+    }
+    res.status(500).json({ message: "Could not update profile", error: error.message });
+  }
+}
+
 async function loginSync(req, res) {
   const { uid } = req.firebaseUser;
 
@@ -122,4 +164,4 @@ async function getCurrentUser(req, res) {
   }
 }
 
-module.exports = { uploadProfilePhoto, registerProfile, loginSync, getCurrentUser };
+module.exports = { uploadProfilePhoto, registerProfile, updateProfile, loginSync, getCurrentUser };

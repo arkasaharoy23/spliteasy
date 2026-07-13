@@ -1,0 +1,7 @@
+.settings-panel {
+  max-width: 480px;
+}
+
+.settings-panel .photo-upload-row {
+  margin-bottom: var(--space-5);
+}

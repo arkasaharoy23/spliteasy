@@ -2,6 +2,7 @@ const Group = require("../models/Group");
 const Expense = require("../models/Expense");
 const User = require("../models/User");
 const cloudinary = require("../config/cloudinary");
+const { notifyMany, notify } = require("../services/notificationService");
 
 async function getCurrentAppUser(req) {
   return User.findOne({ firebaseUid: req.firebaseUser.uid });
@@ -84,6 +85,14 @@ async function createExpense(req, res) {
     await expense.populate("paidBy", "username fullName");
     await expense.populate("participants.user", "username fullName");
 
+    const notifyTargets = participantIds.filter((id) => id !== currentUser._id.toString());
+    await notifyMany(
+      notifyTargets,
+      "expense_added",
+      `${currentUser.username} added "${expense.description}" in "${group.name}"`,
+      group._id
+    );
+
     res.status(201).json({ expense });
   } catch (error) {
     res.status(500).json({ message: "Could not add expense", error: error.message });
@@ -157,6 +166,14 @@ async function createPayment(req, res) {
     });
 
     await group.save();
+
+    await notify(
+      to,
+      "payment_initiated",
+      `${currentUser.username} marked a ${method} payment of ${amount} ${currency.toUpperCase()} to you in "${group.name}"`,
+      group._id
+    );
+
     res.status(201).json({ message: "Payment recorded as pending", payments: group.payments });
   } catch (error) {
     res.status(500).json({ message: "Could not record payment", error: error.message });
@@ -185,6 +202,14 @@ async function confirmPayment(req, res) {
     payment.confirmedAt = new Date();
 
     await group.save();
+
+    await notify(
+      payment.from,
+      "payment_confirmed",
+      `${currentUser.username} confirmed your ${payment.method} payment of ${payment.amount} ${payment.currency}`,
+      group._id
+    );
+
     res.status(200).json({ message: "Payment confirmed", payment });
   } catch (error) {
     res.status(500).json({ message: "Could not confirm payment", error: error.message });

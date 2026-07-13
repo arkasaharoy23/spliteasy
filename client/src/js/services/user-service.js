@@ -33,6 +33,17 @@ export function registerProfile(idToken, profileData) {
   });
 }
 
+export function updateProfile(idToken, profileData) {
+  return request("/auth/me", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${idToken}`
+    },
+    body: JSON.stringify(profileData)
+  });
+}
+
 export function syncLogin(idToken) {
   return request("/auth/login", {
     method: "POST",
