@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://localhost:5000/api";
+export const API_BASE_URL = "https://spliteasy-backend-2565.onrender.com/api";
 
 export const ROUTES = {
   DASHBOARD: "dashboard.html",
