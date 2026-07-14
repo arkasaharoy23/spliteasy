@@ -1,3 +1,5 @@
+const { roundCurrency } = require("../utils/helpers");
+
 function keyFor(userId) {
   return userId.toString();
 }
@@ -54,7 +56,7 @@ function netPairwiseBalances(ledger) {
 
       currencies.forEach((currency) => {
         const net = (forward[currency] || 0) - (backward[currency] || 0);
-        const rounded = Math.round(net * 100) / 100;
+        const rounded = roundCurrency(net);
 
         if (rounded > 0) {
           results.push({ owes: fromId, owedTo: toId, amount: rounded, currency });

@@ -1,3 +1,5 @@
+const { SUPPORTED_CURRENCIES, PAYMENT_METHODS } = require("../utils/constants");
+
 function validateCreateGroup(req, res, next) {
   const { name } = req.body;
 
@@ -20,8 +22,8 @@ function validateCreateExpense(req, res, next) {
     return res.status(400).json({ message: "Amount must be a positive number" });
   }
 
-  if (!currency || currency.trim().length < 3) {
-    return res.status(400).json({ message: "Currency is required, e.g. INR, USD, EUR" });
+  if (!currency || !SUPPORTED_CURRENCIES.includes(currency.trim().toUpperCase())) {
+    return res.status(400).json({ message: `Currency must be one of ${SUPPORTED_CURRENCIES.join(", ")}` });
   }
 
   if (!paidBy) {
@@ -58,12 +60,12 @@ function validateCreatePayment(req, res, next) {
     return res.status(400).json({ message: "Amount must be a positive number" });
   }
 
-  if (!currency) {
-    return res.status(400).json({ message: "Currency is required" });
+  if (!currency || !SUPPORTED_CURRENCIES.includes(currency.trim().toUpperCase())) {
+    return res.status(400).json({ message: `Currency must be one of ${SUPPORTED_CURRENCIES.join(", ")}` });
   }
 
-  if (!["upi", "cash"].includes(method)) {
-    return res.status(400).json({ message: "Payment method must be upi or cash" });
+  if (!PAYMENT_METHODS.includes(method)) {
+    return res.status(400).json({ message: `Payment method must be one of ${PAYMENT_METHODS.join(", ")}` });
   }
 
   req.body.amount = numericAmount;
