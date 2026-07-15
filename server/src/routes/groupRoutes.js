@@ -8,6 +8,7 @@ const {
   updateGroup,
   deleteGroup,
   regenerateInvite,
+  getInvitePreview,
   joinGroupByInviteCode
 } = require("../controllers/groupController");
 
@@ -19,6 +20,7 @@ router.get("/:id", verifyFirebaseToken, getGroupById);
 router.patch("/:id", verifyFirebaseToken, updateGroup);
 router.delete("/:id", verifyFirebaseToken, deleteGroup);
 router.post("/:id/invite/regenerate", verifyFirebaseToken, regenerateInvite);
+router.get("/join/:code/preview", verifyFirebaseToken, getInvitePreview);
 router.post("/join/:code", verifyFirebaseToken, joinGroupByInviteCode);
 
 module.exports = router;

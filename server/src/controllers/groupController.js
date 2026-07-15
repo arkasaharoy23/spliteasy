@@ -214,6 +214,30 @@ async function regenerateInvite(req, res) {
   }
 }
 
+async function getInvitePreview(req, res) {
+  try {
+    const invite = await Invite.findOne({ code: req.params.code, isActive: true });
+
+    if (!invite) {
+      return res.status(404).json({ message: "This invite link is invalid or has expired" });
+    }
+
+    const group = await Group.findById(invite.group);
+    if (!group) {
+      return res.status(404).json({ message: "Group not found" });
+    }
+
+    res.status(200).json({
+      groupId: group._id,
+      groupName: group.name,
+      description: group.description,
+      memberCount: group.members.length
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Could not load invite", error: error.message });
+  }
+}
+
 async function joinGroupByInviteCode(req, res) {
   try {
     const currentUser = await getCurrentAppUser(req);
@@ -260,5 +284,6 @@ module.exports = {
   updateGroup,
   deleteGroup,
   regenerateInvite,
+  getInvitePreview,
   joinGroupByInviteCode
 };

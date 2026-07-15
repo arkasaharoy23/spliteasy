@@ -59,6 +59,13 @@ export function regenerateInvite(idToken, groupId) {
   });
 }
 
+export function fetchInvitePreview(idToken, code) {
+  return request(`/groups/join/${code}/preview`, {
+    method: "GET",
+    headers: authHeaders(idToken)
+  });
+}
+
 export function joinGroupByInviteCode(idToken, code) {
   return request(`/groups/join/${code}`, {
     method: "POST",

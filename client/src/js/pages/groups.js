@@ -1,5 +1,5 @@
 import { watchAuthState, signOutUser } from "../services/auth-service.js";
-import { createGroup, fetchMyGroups, regenerateInvite, joinGroupByInviteCode } from "../services/group-service.js";
+import { createGroup, fetchMyGroups, regenerateInvite, fetchInvitePreview, joinGroupByInviteCode } from "../services/group-service.js";
 import { renderGroupCard } from "../components/group-card.js";
 import { renderQrCode } from "../utils/qr-generator.js";
 import { ROUTES } from "../utils/constants.js";
@@ -135,13 +135,49 @@ async function resolvePendingJoin() {
   if (!joinCode) return;
 
   try {
-    const { group } = await joinGroupByInviteCode(currentIdToken, joinCode);
-    window.location.href = `group-details.html?groupId=${group._id}`;
+    const preview = await fetchInvitePreview(currentIdToken, joinCode);
+    await showJoinConfirmModal(joinCode, preview);
   } catch (error) {
     createGroupBanner.textContent = error.message;
     createGroupBanner.classList.add("is-visible", "form-banner-error");
     window.history.replaceState({}, "", "groups.html");
   }
+}
+
+async function showJoinConfirmModal(joinCode, preview) {
+  await loadModal("../views/modals/confirm-delete-modal.html");
+
+  document.getElementById("confirmDeleteTitle").textContent = "Join group?";
+  document.getElementById("confirmDeleteMessage").textContent =
+    `Join "${preview.groupName}" as a new member? It has ${preview.memberCount} member${preview.memberCount === 1 ? "" : "s"}.`;
+
+  const confirmBtn = document.getElementById("confirmDeleteConfirmBtn");
+  confirmBtn.textContent = "Join group";
+  confirmBtn.classList.remove("btn-danger");
+  confirmBtn.classList.add("btn-primary");
+
+  confirmBtn.addEventListener("click", async () => {
+    confirmBtn.classList.add("btn-loading");
+    confirmBtn.disabled = true;
+
+    try {
+      const { group } = await joinGroupByInviteCode(currentIdToken, joinCode);
+      window.location.href = `group-details.html?groupId=${group._id}`;
+    } catch (error) {
+      closeModal("confirmDeleteModalOverlay");
+      createGroupBanner.textContent = error.message;
+      createGroupBanner.classList.add("is-visible", "form-banner-error");
+      window.history.replaceState({}, "", "groups.html");
+    }
+  });
+
+  document.querySelectorAll("[data-close-modal='confirmDeleteModalOverlay']").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.history.replaceState({}, "", "groups.html");
+    });
+  });
+
+  openModal("confirmDeleteModalOverlay");
 }
 
 watchAuthState(async (firebaseUser) => {
