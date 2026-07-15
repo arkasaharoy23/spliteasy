@@ -56,21 +56,52 @@ async function registerProfile(req, res) {
       return res.status(409).json({ message: "Username is already taken" });
     }
 
-    const user = await User.findOneAndUpdate(
-      { firebaseUid: uid },
-      {
-        firebaseUid: uid,
-        email,
-        username,
-        fullName,
-        upiId,
-        profilePhotoUrl,
-        profilePhotoPublicId,
-        authProvider: authProvider || "password",
-        lastLoginAt: new Date()
-      },
-      { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }
-    );
+    let user;
+
+    try {
+      user = await User.findOneAndUpdate(
+        { firebaseUid: uid },
+        {
+          firebaseUid: uid,
+          email,
+          username,
+          fullName,
+          upiId,
+          profilePhotoUrl,
+          profilePhotoPublicId,
+          authProvider: authProvider || "password",
+          lastLoginAt: new Date()
+        },
+        { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }
+      );
+    } catch (writeError) {
+      if (writeError.code !== 11000) throw writeError;
+
+      const conflictField = Object.keys(writeError.keyPattern || {})[0];
+
+      if (conflictField === "firebaseUid") {
+        user = await User.findOneAndUpdate(
+          { firebaseUid: uid },
+          { lastLoginAt: new Date() },
+          { new: true }
+        );
+      } else if (conflictField === "email") {
+        const existingByEmail = await User.findOne({ email });
+        if (!existingByEmail) throw writeError;
+
+        existingByEmail.firebaseUid = uid;
+        if (fullName) existingByEmail.fullName = fullName;
+        if (upiId !== undefined) existingByEmail.upiId = upiId;
+        if (profilePhotoUrl) existingByEmail.profilePhotoUrl = profilePhotoUrl;
+        if (profilePhotoPublicId) existingByEmail.profilePhotoPublicId = profilePhotoPublicId;
+        if (authProvider) existingByEmail.authProvider = authProvider;
+        existingByEmail.lastLoginAt = new Date();
+
+        user = await existingByEmail.save();
+      } else {
+        throw writeError;
+      }
+    }
 
     res.status(200).json({ user });
   } catch (error) {
