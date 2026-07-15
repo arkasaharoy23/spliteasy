@@ -77,7 +77,7 @@ async function registerProfile(req, res) {
     } catch (writeError) {
       if (writeError.code !== 11000) throw writeError;
 
-      const conflictField = Object.keys(writeError.keyPattern || {})[0];
+      const conflictField = Object.keys(writeError.keyValue || writeError.keyPattern || {})[0];
 
       if (conflictField === "firebaseUid") {
         user = await User.findOneAndUpdate(
@@ -106,7 +106,8 @@ async function registerProfile(req, res) {
     res.status(200).json({ user });
   } catch (error) {
     if (error.code === 11000) {
-      const field = Object.keys(error.keyPattern || {})[0];
+      const field = Object.keys(error.keyValue || error.keyPattern || {})[0];
+      console.error("registerProfile duplicate key error:", { field, keyValue: error.keyValue, keyPattern: error.keyPattern });
       const message =
         field === "email"
           ? "An account already exists for this email"
