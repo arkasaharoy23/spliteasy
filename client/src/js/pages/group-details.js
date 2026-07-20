@@ -149,12 +149,21 @@ function renderSettleUp(data) {
           <span class="settle-item-status">Marked as ${pending.method}, waiting for confirmation</span>
         `;
       } else {
-        const canPayUpi = entry.currency === "INR" && receiver && receiver.upiId;
+        const isInr = entry.currency === "INR";
+        const hasUpiId = receiver && receiver.upiId;
+
+        let upiButtonHtml = "";
+        if (isInr && hasUpiId) {
+          upiButtonHtml = `<button type="button" class="btn btn-primary btn-sm" data-pay-upi='${JSON.stringify({ to: entry.owedTo, amount: entry.amount, currency: entry.currency, upiId: receiver.upiId, name: memberName(receiver) })}'>Pay via UPI</button>`;
+        } else if (isInr) {
+          upiButtonHtml = `<button type="button" class="btn btn-primary btn-sm" disabled title="Ask ${receiver ? memberName(receiver) : "them"} to add a UPI ID in Settings">Pay via UPI</button>`;
+        }
+
         li.innerHTML = `
           <span class="settle-item-name">You owe ${receiver ? memberName(receiver) : ""}</span>
           <span class="settle-item-amount">${formatCurrency(entry.amount, entry.currency)}</span>
           <span class="settle-item-actions">
-            ${canPayUpi ? `<button type="button" class="btn btn-primary btn-sm" data-pay-upi='${JSON.stringify({ to: entry.owedTo, amount: entry.amount, currency: entry.currency, upiId: receiver.upiId, name: memberName(receiver) })}'>Pay via UPI</button>` : ""}
+            ${upiButtonHtml}
             <button type="button" class="btn btn-secondary btn-sm" data-mark-cash='${JSON.stringify({ to: entry.owedTo, amount: entry.amount, currency: entry.currency })}'>Mark as cash</button>
           </span>
         `;
